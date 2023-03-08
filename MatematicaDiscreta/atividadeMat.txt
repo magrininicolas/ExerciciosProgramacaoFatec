@@ -1,0 +1,88 @@
+/*
+Caio Henrique Rodrigues Lemes
+Eder Pedro Venancio
+Leonardo Morari dos Santos
+Nicolas Gustavo Magrini Pereira
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int valor_Digitado, p, q;
+
+  printf("Menu:\n 1.~p\n 2.p^q (p e q)\n 3.pvq: (p ou q)\n 4.p_vq:(ou p ou "
+         "q)\n 5.p->q:(se p, entao q)\n 6.p<->q:(p se, e somente se, q)\n ");
+  printf("Digite o valor referente ao que vc quer do menu acima: ");
+  scanf("%d", &valor_Digitado);
+  
+
+  switch (valor_Digitado) {
+  case 1:
+    printf("Opcao Escolhida 1: (Negativa de P)\n");
+    scanf("%d", &p);
+        // A negação do valor inserido
+    p = !p;
+    printf("%d", p);
+    break;
+
+  case 2:
+    printf("Opcao Escolhida 2: (P e Q)\n");
+    printf("Digite o valor de P: ");
+    scanf("%d", &p);
+    printf("Digite o valor de Q:");
+    scanf("%d", &q);
+    // Os dois precisam ser iguais para ser V.
+    p = (p && q);
+    printf("%d", p);
+    break;
+
+  case 3:
+    printf("Opcao Escolhida 3: (P ou Q)\n");
+     printf("Digite o valor de P: ");
+    scanf("%d", &p);
+    printf("Digite o valor de Q:");
+    scanf("%d", &q);
+    // Um dos valores apenas precisa ser verdadeiro para ser V
+    p = (p || q);
+    printf("%d", p);
+    break;
+
+  case 4:
+    printf("Opcao Escolhida 4: (ou P ou Q)\n");
+     printf("Digite o valor de P: ");
+    scanf("%d", &p);
+    printf("Digite o valor de Q:");
+    scanf("%d", &q);
+    // Os dois valores não podem ser iguais 
+    
+   // p = !((!p || q) && (!q || p));         Negação de p <-> q
+    p = (!p && q) || (!q && p);
+    printf("%d", p);
+    break;
+
+  case 5:
+    printf("Opcao Escolhida 5: (se P, entao Q)\n");
+     printf("Digite o valor de P: ");
+    scanf("%d", &p);
+    printf("Digite o valor de Q:");
+    scanf("%d", &q);
+    // Verdade nunca implica falsidade
+    p = !p || q;
+    printf("%d", p);
+    break;
+
+  case 6:
+    printf("Opcao Escolhida 6: (P se, e somente se, Q)\n");
+     printf("Digite o valor de P: ");
+    scanf("%d", &p);
+    printf("Digite o valor de Q:");
+    scanf("%d", &q);
+    // Somente se os dois valores forem iguais
+    p = (!p || q) && (!q || p); 
+    printf("%d", p);
+    break;
+  }
+  return 0;
+}
