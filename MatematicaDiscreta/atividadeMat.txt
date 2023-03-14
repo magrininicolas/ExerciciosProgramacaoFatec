@@ -22,7 +22,7 @@ int main() {
   case 1:
     printf("Opcao Escolhida 1: (Negativa de P)\n");
     scanf("%d", &p);
-        // A negação do valor inserido
+    // A negação do valor inserido
     p = !p;
     printf("%d", p);
     break;
@@ -57,14 +57,14 @@ int main() {
     scanf("%d", &q);
     // Os dois valores não podem ser iguais 
     
-   // p = !((!p || q) && (!q || p));         Negação de p <-> q
+    // p = !((!p || q) && (!q || p));         Negação de p <-> q
     p = (!p && q) || (!q && p);
     printf("%d", p);
     break;
 
   case 5:
     printf("Opcao Escolhida 5: (se P, entao Q)\n");
-     printf("Digite o valor de P: ");
+    printf("Digite o valor de P: ");
     scanf("%d", &p);
     printf("Digite o valor de Q:");
     scanf("%d", &q);
@@ -75,7 +75,7 @@ int main() {
 
   case 6:
     printf("Opcao Escolhida 6: (P se, e somente se, Q)\n");
-     printf("Digite o valor de P: ");
+    printf("Digite o valor de P: ");
     scanf("%d", &p);
     printf("Digite o valor de Q:");
     scanf("%d", &q);
