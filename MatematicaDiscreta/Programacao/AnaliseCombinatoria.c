@@ -28,17 +28,24 @@ int main(void)
       scanf("%d", &n);
       printf("Digite o valor de k: ");
       scanf("%d", &k);
-      int fatorialNA = 1, fatorialDivisor = 1;
-      for (i = n; i >= 1; i--)
+      if (k > n)
       {
-        fatorialNA *= i;
+        printf("O valor de N deve ser maior que de K.");
       }
-      for (i = (n - k); i >= 1; i--)
+      else
       {
-        fatorialDivisor *= i;
+        int fatorialNA = 1, fatorialDivisor = 1;
+        for (i = n; i >= 1; i--)
+        {
+          fatorialNA *= i;
+        }
+        for (i = (n - k); i >= 1; i--)
+        {
+          fatorialDivisor *= i;
+        }
+        resultado = fatorialNA / (double)fatorialDivisor;
+        printf("A(%d, %d) = %.2f\n", n, k, resultado);
       }
-      resultado = fatorialNA / (double)fatorialDivisor;
-      printf("A(%d, %d) = %.2f\n", n, k, resultado);
       break;
 
     case 3:
@@ -46,21 +53,32 @@ int main(void)
       scanf("%d", &n);
       printf("Digite o valor de k: ");
       scanf("%d", &k);
-      int fatorialNC = 1, fatorialK = 1, fatorialNK = 1;
-      for (i = n; i >= 1; i--)
+      if (k > n)
       {
-        fatorialNC *= i;
+        printf("O valor de N deve ser maior que de K.");
       }
-      for (i = k; i >= 1; i--)
+      else
       {
-        fatorialK *= i;
+        int fatorialNC = 1, fatorialK = 1, fatorialNK = 1;
+        for (i = n; i >= 1; i--)
+        {
+          fatorialNC *= i;
+        }
+        for (i = k; i >= 1; i--)
+        {
+          fatorialK *= i;
+        }
+        for (i = (n - k); i >= 1; i--)
+        {
+          fatorialNK *= i;
+        }
+        resultado = fatorialNC / (double)(fatorialK * fatorialNK);
+        printf("C(%d, %d) = %.2f\n", n, k, resultado);
       }
-      for (i = (n - k); i >= 1; i--)
-      {
-        fatorialNK *= i;
-      }
-      resultado = fatorialNC / (double)(fatorialK * fatorialNK);
-      printf("C(%d, %d) = %.2f\n", n, k, resultado);
+      break;
+
+    case 4:
+      printf("Voce saiu do programa. Obrigado por utilizar.\n");
       break;
 
     default:
