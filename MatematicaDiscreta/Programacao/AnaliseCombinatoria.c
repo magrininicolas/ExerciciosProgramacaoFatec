@@ -3,7 +3,7 @@
 
 int main(void)
 {
-  int operacao, n, k, i;
+  int operacao, n, k, i, fatorialN = 1, fatorialK = 1, fatorialNK = 1;;
   double resultado;
 
   while (operacao != 4)
@@ -15,12 +15,12 @@ int main(void)
     case 1:
       printf("\nDigite o valor de n: ");
       scanf("%d", &n);
-      int permutacao = 1;
+      fatorialN = 1;
       for (i = n; i >= 1; i--)
       {
-        permutacao *= i;
+        fatorialN *= i;
       }
-      printf("P(%d) = %d\n", n, permutacao);
+      printf("P(%d) = %d\n", n, fatorialN);
       break;
 
     case 2:
@@ -34,16 +34,16 @@ int main(void)
       }
       else
       {
-        int fatorialNA = 1, fatorialDivisor = 1;
+        fatorialN = 1, fatorialNK = 1;
         for (i = n; i >= 1; i--)
         {
-          fatorialNA *= i;
+          fatorialN *= i;
         }
         for (i = (n - k); i >= 1; i--)
         {
-          fatorialDivisor *= i;
+          fatorialNK *= i;
         }
-        resultado = fatorialNA / (double)fatorialDivisor;
+        resultado = fatorialN / (double)fatorialNK;
         printf("A(%d, %d) = %.2f\n", n, k, resultado);
       }
       break;
@@ -59,10 +59,10 @@ int main(void)
       }
       else
       {
-        int fatorialNC = 1, fatorialK = 1, fatorialNK = 1;
+        fatorialN = 1, fatorialK = 1, fatorialNK = 1;
         for (i = n; i >= 1; i--)
         {
-          fatorialNC *= i;
+          fatorialN *= i;
         }
         for (i = k; i >= 1; i--)
         {
@@ -72,7 +72,7 @@ int main(void)
         {
           fatorialNK *= i;
         }
-        resultado = fatorialNC / (double)(fatorialK * fatorialNK);
+        resultado = fatorialN / (double)(fatorialK * fatorialNK);
         printf("C(%d, %d) = %.2f\n", n, k, resultado);
       }
       break;
