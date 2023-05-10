@@ -52,10 +52,16 @@ int main()
       }
     }
 
-    int Resultado[Ma][Na];
+    int ResultadoAB[Ma][Na];
+    int ResultadoBA[Ma][Na];
 
     printf("Digite: 1 = Soma, 2 = Subtração.\n");
     scanf("%d", &op);
+    while (op != 1 && op != 2)
+    {
+      printf("Digite: 1 = Soma, 2 = Subtração.\n");
+      scanf("%d", &op);
+    }
 
     printf("-----------------------------------------------------\n");
 
@@ -66,7 +72,7 @@ int main()
       {
         for (int j = 0; j < Na; j++)
         {
-          Resultado[i][j] = A[i][j] + B[i][j];
+          ResultadoAB[i][j] = A[i][j] + B[i][j];
         }
       }
     }
@@ -77,19 +83,36 @@ int main()
       {
         for (int j = 0; j < Na; j++)
         {
-          Resultado[i][j] = A[i][j] - B[i][j];
+          ResultadoAB[i][j] = A[i][j] - B[i][j];
+          ResultadoBA[i][j] = B[i][j] - A[i][j];
         }
       }
     }
 
-    printf("Printando a tabela resultado: \n");
+    printf("Printando a matriz do resultado de A para B (no caso de soma, B para A é o mesmo resultado): \n");
     for (int i = 0; i < Ma; i++)
     {
       for (int j = 0; j < Na; j++)
       {
-        printf("Elemento [%d, %d]: %d\n", i, j, Resultado[i][j]);
+        printf("Elemento [%d, %d]: %d\n", i + 1, j + 1, ResultadoAB[i][j]);
       }
     }
+
+    if (op == 2)
+    {
+      printf("-----------------------------------------------------\n");
+      printf("Printando a matriz do resultado de B para A: \n");
+      for (int i = 0; i < Ma; i++)
+      {
+        for (int j = 0; j < Na; j++)
+        {
+          printf("Elemento [%d, %d]: %d\n", i + 1, j + 1, ResultadoBA[i][j]);
+        }
+      }
+    }
+
+    printf("-----------------------------------------------------\n");
+    printf("Fim do programa\n");
 
     return 0;
   }
