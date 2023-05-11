@@ -3,6 +3,41 @@
 
 #include <stdio.h>
 
+void somaMatrizes(int m, int n, int A[][n], int B[][n], int C[][n])
+{
+  for (int i = 0; i < m; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      C[i][j] = A[i][j] + B[i][j];
+    }
+  }
+}
+
+void subtraiMatrizes(int m, int n, int A[][n], int B[][n], int C[][n], int D[][n])
+{
+  for (int i = 0; i < m; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      C[i][j] = A[i][j] - B[i][j];
+      D[i][j] = B[i][j] - A[i][j];
+    }
+  }
+}
+
+void printaMatriz(int m, int n, int resultado[][n])
+{
+  for (int i = 0; i < m; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      printf("%d ", resultado[i][j]);
+    }
+    printf("\n");
+  }
+}
+
 int main()
 {
   int Na, Ma, Nb, Mb, comparaMb, comparaNb, op;
@@ -22,7 +57,7 @@ int main()
 
   if (comparaMb != (Mb * 2) || comparaNb != (Nb * 2) || Mb != Nb || Ma != Na)
   {
-    printf("Impossível realizar quaisquer tipo de operação entre as matrizes A e B");
+    printf("Impossível realizar quaisquer tipo de operação entre as matrizes A e B\n\n");
   }
   else
   {
@@ -68,51 +103,26 @@ int main()
     if (op == 1)
     {
       printf("Você escolheu soma\n");
-      for (int i = 0; i < Ma; i++)
-      {
-        for (int j = 0; j < Na; j++)
-        {
-          ResultadoAB[i][j] = A[i][j] + B[i][j];
-        }
-      }
+      somaMatrizes(Ma, Na, A, B, ResultadoAB);
     }
     else if (op == 2)
     {
       printf("Você escolheu subtração.\n");
-      for (int i = 0; i < Ma; i++)
-      {
-        for (int j = 0; j < Na; j++)
-        {
-          ResultadoAB[i][j] = A[i][j] - B[i][j];
-          ResultadoBA[i][j] = B[i][j] - A[i][j];
-        }
-      }
+      subtraiMatrizes(Ma, Na, A, B, ResultadoAB, ResultadoBA);
     }
 
     printf("Printando a matriz do resultado de A para B (no caso de soma, B para A é o mesmo resultado): \n");
-    for (int i = 0; i < Ma; i++)
-    {
-      for (int j = 0; j < Na; j++)
-      {
-        printf("Elemento [%d, %d]: %d\n", i + 1, j + 1, ResultadoAB[i][j]);
-      }
-    }
+    printaMatriz(Ma, Na, ResultadoAB);
 
     if (op == 2)
     {
       printf("-----------------------------------------------------\n");
       printf("Printando a matriz do resultado de B para A: \n");
-      for (int i = 0; i < Ma; i++)
-      {
-        for (int j = 0; j < Na; j++)
-        {
-          printf("Elemento [%d, %d]: %d\n", i + 1, j + 1, ResultadoBA[i][j]);
-        }
-      }
+      printaMatriz(Ma, Na, ResultadoBA);
     }
 
     printf("-----------------------------------------------------\n");
-    printf("Fim do programa\n");
+    printf("Fim do programa\n\n");
 
     return 0;
   }
