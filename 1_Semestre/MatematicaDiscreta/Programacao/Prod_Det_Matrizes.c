@@ -13,17 +13,17 @@ int calculaDeterminante(int n, int matriz[n][n]){
     for(int i = 0; i < n; i++) {
       if(matriz[0][i] != 0) {
         int aux[n - 1][n - 1];
-        int auxI = 0;
         int auxJ = 0;
+        int auxK = 0;
         for(int j = 1; j < n; j++) {
           auxJ = 0;
           for(int k = 0; k < n; k++){
             if(k != i){
-              aux[auxI][auxJ] = matriz[j][k];
-              auxJ++;
+              aux[auxJ][auxK] = matriz[j][k];
+              auxK++;
             }
           }
-          auxI++;
+          auxJ++;
         }
         int cofator = (i % 2 == 0) ? matriz[0][i] : -matriz[0][i];
         det += cofator * calculaDeterminante(n - 1, aux);
