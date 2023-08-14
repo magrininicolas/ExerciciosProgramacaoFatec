@@ -93,7 +93,6 @@ int menu() {
 
 void embaralhar() {
   srand(time(NULL));
-  int valores[MAX] = {0};
 
   baralho.topo = 0;
 
@@ -107,7 +106,6 @@ void embaralhar() {
       }
     }
 
-    valores[valor - 1] = TRUE;
     baralho.cartas[baralho.topo].valor = valor;
 
     if (baralho.cartas[baralho.topo].valor <= 13) {
@@ -140,7 +138,7 @@ int sortear(CARTA *carta) {
 
 int geraCartaRand() { return 1 + rand() % MAX; }
 
-int geraCarta(BARALHO baralho) { srand(time(NULL)); }
+// void geraCarta(BARALHO baralho) { srand(time(NULL)); }
 
 char *getNaipe(int naipe) {
   switch (naipe) {
