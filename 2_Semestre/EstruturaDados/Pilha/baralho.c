@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-enum { FALSE, TRUE, MAX = 52 };
+#define MAX 52
 
-enum Menu { NAO_SELECIONADO = 0, EMBARALHAR, SORTEAR, SAIR };
+enum Bool { FALSE, TRUE };
 
-enum Naipes { PAUS, OUROS, COPAS, ESPADAS };
+enum Menu { NAO_SELECIONADO, EMBARALHAR, SORTEAR, SAIR };
+
+enum Naipes { COPAS = 1, OUROS, ESPADAS, PAUS };
 
 typedef int BOOL;
 
@@ -40,6 +42,7 @@ int main() {
     opcao = menu();
 
     switch (opcao) {
+
     case EMBARALHAR:
       embaralhar();
       break;
@@ -63,6 +66,7 @@ int main() {
         }
       }
       break;
+
     case SAIR:
       break;
 
@@ -85,7 +89,7 @@ int menu() {
 }
 
 void embaralhar() {
-  baralho.topo = 0;
+  baralho.topo = -1;
 
   while (baralho.topo < (MAX - sorteado)) {
     int valor = geraCartaRand();
@@ -100,13 +104,13 @@ void embaralhar() {
     baralho.cartas[baralho.topo].valor = valor;
 
     if (baralho.cartas[baralho.topo].valor <= 13) {
-      baralho.cartas[baralho.topo].naipe = PAUS;
+      baralho.cartas[baralho.topo].naipe = COPAS;
     } else if (baralho.cartas[baralho.topo].valor <= 26) {
       baralho.cartas[baralho.topo].naipe = OUROS;
     } else if (baralho.cartas[baralho.topo].valor <= 39) {
-      baralho.cartas[baralho.topo].naipe = COPAS;
-    } else {
       baralho.cartas[baralho.topo].naipe = ESPADAS;
+    } else {
+      baralho.cartas[baralho.topo].naipe = PAUS;
     }
 
     baralho.topo++;
@@ -130,16 +134,16 @@ int geraCartaRand() { return 1 + rand() % 52; }
 
 const char *getNaipe(int naipe) {
   switch (naipe) {
-  case PAUS:
-    return "Paus";
-  case COPAS:
-    return "Copas";
-  case OUROS:
-    return "Ouros";
-  case ESPADAS:
-    return "Espadas";
-  default:
-    return "Desconhecido";
+    case COPAS:
+      return "Copas";
+    case OUROS:
+      return "Ouros";
+    case ESPADAS:
+      return "Espadas";
+    case PAUS:
+      return "Paus";
+    default:
+      return "Desconhecido";
   }
 }
 
