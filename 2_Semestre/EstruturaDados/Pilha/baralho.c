@@ -2,19 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-enum {
-  NAO_SELECIONADO = 0,
-  EMBARALHAR,
-  SORTEAR,
-  SAIR,
-  MAX = 52,
-  FALSE = 0,
-  TRUE,
-  PAUS = 1,
-  OUROS,
-  COPAS,
-  ESPADAS
-};
+enum { FALSE, TRUE, MAX = 52 };
+
+enum Menu { NAO_SELECIONADO = 0, EMBARALHAR, SORTEAR, SAIR };
+
+enum Naipes { PAUS, OUROS, COPAS, ESPADAS };
 
 typedef int BOOL;
 
@@ -28,18 +20,20 @@ typedef struct {
   int topo;
 } BARALHO;
 
+CARTA carta;
 BARALHO baralho;
 int sorteado = 0;
-CARTA carta;
-// CARTA cartasSorteadas[MAX];
 
 int menu();
 void embaralhar();
 int geraCartaRand();
 BOOL sortear(CARTA *carta);
-char *getNaipe(int naipe);
+const char *getNaipe(int naipe);
 
 int main() {
+
+  srand(time(NULL));
+
   int opcao = NAO_SELECIONADO;
 
   while (opcao != SAIR) {
@@ -52,9 +46,9 @@ int main() {
 
     case SORTEAR:
       if (sortear(&carta)) {
-        carta.valor = carta.valor % 13 + 1;
+        carta.valor = (carta.valor % 13) + 1;
 
-        char *naipe = getNaipe(carta.naipe);
+        const char *naipe = getNaipe(carta.naipe);
 
         if (carta.valor == 1) {
           printf("\nCarta sorteada: A de %s\n", naipe);
@@ -69,7 +63,6 @@ int main() {
         }
       }
       break;
-
     case SAIR:
       break;
 
@@ -92,8 +85,6 @@ int menu() {
 }
 
 void embaralhar() {
-  srand(time(NULL));
-
   baralho.topo = 0;
 
   while (baralho.topo < (MAX - sorteado)) {
@@ -129,30 +120,24 @@ int sortear(CARTA *carta) {
     return FALSE;
   }
 
-  baralho.topo--;
-  // cartasSorteadas[sorteado] = *carta;
   sorteado++;
+  baralho.topo--;
   *carta = baralho.cartas[baralho.topo];
   return TRUE;
 }
 
-int geraCartaRand() { return 1 + rand() % MAX; }
+int geraCartaRand() { return 1 + rand() % 52; }
 
-// void geraCarta(BARALHO baralho) { srand(time(NULL)); }
-
-char *getNaipe(int naipe) {
+const char *getNaipe(int naipe) {
   switch (naipe) {
   case PAUS:
     return "Paus";
-    break;
   case COPAS:
     return "Copas";
-    break;
   case OUROS:
     return "Ouros";
   case ESPADAS:
     return "Espadas";
-    break;
   default:
     return "Desconhecido";
   }
