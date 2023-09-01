@@ -1,19 +1,26 @@
 #include <stdio.h>
 
-enum {
+enum
+{
 
-  NAO_SELECIONADO,
-  ADD,
-  REMOVE,
-  EXIT
+    NAO_SELECIONADO,
+    ADD,
+    REMOVE,
+    SEEK,
+    EXIT
 
 } menuOptions;
 
-enum {
-  MAX_SIZE = 5,
+enum
+{
+    MAX_SIZE = 5,
 };
 
-enum { FALSE, TRUE } bool;
+enum
+{
+    FALSE,
+    TRUE
+} bool;
 
 int queue[MAX_SIZE];
 int queueEnd = 0;
@@ -26,91 +33,125 @@ BOOLEAN addItem(int value);
 BOOLEAN removeItem(int *value);
 BOOLEAN isEmpty();
 BOOLEAN isFull();
+int queueStartPos();
+int queueEndPos();
 int seekItem();
 
-int main() {
-  int op = NAO_SELECIONADO;
-  int number = 0;
-  BOOLEAN ok = -1;
+int main()
+{
+    int op = NAO_SELECIONADO;
+    int number = 0;
 
-  while (op != EXIT) {
-    op = menu();
+    while (op != EXIT)
+    {
+        op = menu();
 
-    switch (op) {
-    case ADD:
-      printf("Digite um numero: ");
-      scanf("%d", &number);
+        switch (op)
+        {
+        case ADD:
+            printf("Digite um numero: ");
+            scanf("%d", &number);
 
-      ok = addItem(number);
-      if (!ok) {
-        printf("Não foi possível adicionar na fila\n");
-      }
-      break;
+            if (!addItem(number))
+            {
+                printf("Fila cheia\n");
+            }
+            break;
 
-    case REMOVE:
-      ok = removeItem(&number);
-      if (!ok) {
-        printf("Não foi possível remover\n");
-      } else {
-        printf("O número %d foi retirado da fila\n", number);
-      }
-      break;
+        case REMOVE:
+            if (!removeItem(&number))
+            {
+                printf("Fila vazia\n");
+            }
+            else
+            {
+                printf("O número %d foi retirado da fila\n", number);
+            }
+            break;
 
-    case EXIT:
-      break;
+        case SEEK:
+            if (isEmpty())
+            {
+                printf("Fila vazia\n");
+            }
+            else
+            {
+                printf("Prox da fila: %d\n", seekItem());
+            }
+            break;
 
-    default:
-      printf("Opção inválida");
+        case EXIT:
+            break;
+
+        default:
+            printf("Opção inválida");
+        }
     }
-    if (queueStart != queueEnd) {
-      printf("Proximo da fila: %d\n", seekItem());
+
+    return 0;
+}
+
+int menu()
+{
+    int op;
+
+    printf("%d - ADD\n", ADD);
+    printf("%d - REMOVE\n", REMOVE);
+    printf("%d - LIST\n", SEEK);
+    printf("%d - EXIT\n", EXIT);
+    printf("Digite uma opção: ");
+    scanf("%d", &op);
+
+    return op;
+}
+
+BOOLEAN addItem(int value)
+{
+    if (isFull())
+    {
+        return FALSE;
     }
-  }
 
-  return 0;
+    queue[queueEndPos()] = value;
+    queueEnd++;
+
+    return TRUE;
 }
 
-int menu() {
-  int op;
+BOOLEAN removeItem(int *value)
+{
+    if (isEmpty())
+    {
+        return FALSE;
+    }
 
-  printf("%d - ADD\n", ADD);
-  printf("%d - REMOVE\n", REMOVE);
-  printf("%d - EXIT\n", EXIT);
-  printf("Digite uma opção: ");
-  scanf("%d", &op);
+    *value = queue[queueStartPos()];
+    queueStart++;
 
-  return op;
+    return TRUE;
 }
 
-BOOLEAN addItem(int value) {
-  if (isFull()) {
-    return FALSE;
-  }
-
-  queue[queueEnd % MAX_SIZE] = value;
-  queueEnd++;
-
-  return TRUE;
+BOOLEAN isEmpty()
+{
+    return queueStart == queueEnd;
 }
 
-BOOLEAN removeItem(int *value) {
-  if (isEmpty()) {
-    return FALSE;
-  }
-
-  *value = queue[queueStart % MAX_SIZE];
-  queueStart++;
-
-  return TRUE;
+BOOLEAN isFull()
+{
+    return (queueEnd - queueStart) == MAX_SIZE;
 }
 
-BOOLEAN isEmpty() {
-  return queueStart == queueEnd;
+int queueStartPos()
+{
+    return queueStart % MAX_SIZE;
 }
 
-BOOLEAN isFull() {
-  return (queueEnd - queueStart) == MAX_SIZE;
+int queueEndPos()
+{
+    return queueEnd % MAX_SIZE;
 }
 
-int seekItem() { return queue[queueStart % MAX_SIZE]; }
-
+int seekItem()
+{
+    return queue[queueStartPos()];
+}
