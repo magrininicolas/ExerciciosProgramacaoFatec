@@ -18,10 +18,11 @@ int main()
     while (op != SAIR)
     {
         op = menu();
+        int num;
         switch (op)
         {
         case RETIRAR_SENHA:
-            int num = sorteiaSenha();
+            num = sorteiaSenha();
             if (addSenha(num))
             {
                 printf("Sua senha: %d\n", num);
