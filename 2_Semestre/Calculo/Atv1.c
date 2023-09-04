@@ -1,3 +1,6 @@
+// Nicolas Gustavo Magrini Pereira
+// Leonardo Morari dos Santos
+
 #include <stdio.h>
 #include <math.h>
 
