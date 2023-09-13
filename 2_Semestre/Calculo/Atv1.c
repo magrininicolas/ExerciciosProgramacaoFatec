@@ -1,5 +1,7 @@
-// Nicolas Gustavo Magrini Pereira
+// Carlos Henrique Nóbrega da Silva 
+// Jesua Isaque Calefi da Silva
 // Leonardo Morari dos Santos
+// Nicolas Gustavo Magrini Pereira
 
 #include <stdio.h>
 #include <math.h>
