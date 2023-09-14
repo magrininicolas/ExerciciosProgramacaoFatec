@@ -1,7 +1,16 @@
 #include <stdio.h>
 
 // Consts
-enum { NAO_SELECIONADO = 0, PUSH, POP, SAIR, TAMANHO = 5, FALSE = 0, TRUE };
+enum
+{
+  NAO_SELECIONADO = 0,
+  PUSH,
+  POP,
+  SAIR,
+  TAMANHO = 5,
+  FALSE = 0,
+  TRUE
+};
 
 typedef int BOOLEAN;
 
@@ -14,29 +23,36 @@ int menu();
 BOOLEAN push(int valor);
 BOOLEAN pop(int *valor);
 
-int main() {
+int main()
+{
   int opcao = NAO_SELECIONADO;
   int numero;
   BOOLEAN deuCerto = FALSE;
 
-  while (opcao != SAIR) {
+  while (opcao != SAIR)
+  {
     opcao = menu();
 
-    switch (opcao) {
+    switch (opcao)
+    {
     case PUSH:
       printf("Digite um numero: ");
       scanf("%d", &numero);
 
       deuCerto = push(numero);
-      if (!deuCerto) {
+      if (!deuCerto)
+      {
         printf("Pilha cheia!\n");
       }
       break;
     case POP:
       deuCerto = pop(&numero);
-      if (deuCerto) {
+      if (deuCerto)
+      {
         printf("O número %d foi retirado da pilha\n", numero);
-      } else {
+      }
+      else
+      {
         printf("Pilha vazia!\n");
       }
       break;
@@ -50,7 +66,8 @@ int main() {
   return 0;
 }
 
-int menu() {
+int menu()
+{
 
   int op;
 
@@ -63,9 +80,11 @@ int menu() {
   return op;
 }
 
-BOOLEAN push(int valor) {
+BOOLEAN push(int valor)
+{
 
-  if (posicao == TAMANHO) {
+  if (posicao == TAMANHO)
+  {
     return FALSE;
   }
 
@@ -75,9 +94,11 @@ BOOLEAN push(int valor) {
   return TRUE;
 }
 
-BOOLEAN pop(int *valor) {
+BOOLEAN pop(int *valor)
+{
 
-  if (posicao == 0) {
+  if (posicao == 0)
+  {
     return FALSE;
   }
 
@@ -86,4 +107,3 @@ BOOLEAN pop(int *valor) {
 
   return TRUE;
 }
-

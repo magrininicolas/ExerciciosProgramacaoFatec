@@ -10,6 +10,7 @@ enum
     OP_ADICIONAR_TAREFA,
     OP_LOCALIZAR_TAREFA,
     OP_EXCLUIR_TAREFA,
+    OP_LISTA_TAREFA,
     OP_SAIR
 };
 
@@ -60,6 +61,11 @@ int main()
             printf("Digite uma tarefa: ");
             fgets(tarefa, 101, stdin);
 
+            if (buscarPorTarefa(tarefa))
+            {
+                printf("Tarefa já está na lista \n");
+                break;
+            }
             if (!adicionarTarefa(prioridade, tarefa))
             {
                 expandir();
@@ -76,7 +82,7 @@ int main()
             fgets(tarefa, 101, stdin);
             if (localizarTarefa(tarefa, &prioridade))
             {
-                printf("Tarefa localizada: Prioridade: %d - Tarefa: %s", prioridade, tarefa);
+                printf("Tarefa localizada: Prioridade: %3d - Tarefa: %s", prioridade, tarefa);
             }
             else
             {
@@ -100,6 +106,10 @@ int main()
             listar();
             break;
 
+        case OP_LISTA_TAREFA:
+            listar();
+            break;
+
         case OP_SAIR:
             break;
 
@@ -119,6 +129,7 @@ int menu()
     printf("%d - Adicionar Tarefa\n", OP_ADICIONAR_TAREFA);
     printf("%d - Localizar Tarefa\n", OP_LOCALIZAR_TAREFA);
     printf("%d - Excluir Tarefa\n", OP_EXCLUIR_TAREFA);
+    printf("%d - Listar Tarefas\n", OP_LISTA_TAREFA);
     printf("%d - Sair\n", OP_SAIR);
 
     printf("Digite uma opcao: ");
@@ -209,9 +220,16 @@ void ordenar()
 
 void listar()
 {
-    for (int i = 0; i < posicao; i++)
+    if (estaVazia())
     {
-        printf("Prioridade: %d - Tarefa: %s", lista[i].prioridade, lista[i].tarefa);
+        printf("Lista vazia!\n");
+    }
+    else
+    {
+        for (int i = 0; i < posicao; i++)
+        {
+            printf("Prioridade: %3d - Tarefa: %s", lista[i].prioridade, lista[i].tarefa);
+        }
     }
 }
 
