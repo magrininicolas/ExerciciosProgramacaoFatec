@@ -172,7 +172,7 @@ void finalizar()
 
 BOOLEAN adicionarTarefa(int prioridade, char tarefa[])
 {
-    if (estaCheia() || prioridade > 100 || prioridade <= 0 || buscarPorTarefa(tarefa))
+    if (estaCheia() || prioridade > 100 || prioridade <= 0)
     {
         return FALSE;
     }
