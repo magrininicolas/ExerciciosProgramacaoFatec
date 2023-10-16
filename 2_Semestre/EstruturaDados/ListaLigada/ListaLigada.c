@@ -162,19 +162,16 @@ void excluir(int valor)
 void excluirNoInicio()
 {
     inicio = inicio->proximo;
-    // free(encontrado);
 }
 
 void excluirNoMeio()
 {
     anterior->proximo = aux->proximo;
-    // free(encontrado);
 }
 
 void excluirNoFim()
 {
     anterior->proximo = NULL;
-    // free(encontrado);
 }
 
 struct no *procuraDado(int valor)
