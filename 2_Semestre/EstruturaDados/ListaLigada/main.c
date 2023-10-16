@@ -1,34 +1,45 @@
+#include <stdio.h>
+
 #include "ListaLigada.h"
 
+// constantes
 enum
 {
-    OP_NAO_SELECIONADA,
+    OP_NAO_SELECIONADA = 0,
     OP_ADICIONAR,
     OP_EXCLUIR,
     OP_IMPRIMIR,
     OP_SAIR
-} op_menu;
+};
 
+// variáveis
+
+// protótipos
 int menu();
 
 int main()
 {
     inicializar();
-    int op = OP_NAO_SELECIONADA;
-    int num;
-    while (op != OP_SAIR)
-    {
-        op = menu();
+    int opcao = OP_NAO_SELECIONADA;
+    int numero;
 
-        switch (op)
+    while (opcao != OP_SAIR)
+    {
+        opcao = menu();
+
+        switch (opcao)
         {
         case OP_ADICIONAR:
             printf("Digite um numero: ");
-            scanf("%d", &num);
-            adicionar(num);
+            scanf("%d", &numero);
+
+            adicionar(numero);
             break;
         case OP_EXCLUIR:
-            printf("A ser implementado");
+            printf("Digite um numero: ");
+            scanf("%d", &numero);
+
+            excluir(numero);
             break;
         case OP_IMPRIMIR:
             imprimir();
@@ -36,7 +47,7 @@ int main()
         case OP_SAIR:
             break;
         default:
-            printf("Opcao invalida");
+            printf("Opcao invalida!\n");
         }
     }
 

@@ -4,26 +4,33 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct no
+// Constantes
+struct no
 {
     int dado;
     struct no *proximo;
-} no;
+};
 
-extern no *inicio;
-extern no *novo;
-extern no *aux;
-extern no *anterior;
+// Variáveis
+extern struct no *inicio;
+extern struct no *aux;
+extern struct no *anterior;
+extern struct no *novo;
 
+// Protótipos
 void adicionar(int valor);
 void adicionarNoInicio();
 void adicionarNoFim();
 void adicionarNoMeio();
-no *novoNo(int dado);
 void excluir(int valor);
+void excluirNoInicio();
+void excluirNoFim();
+void excluirNoMeio();
 void imprimir();
+struct no *procuraDado(int valor);
+struct no *novo_no(int dado);
 void inicializar();
 void finalizar();
-void finalizarNo(no *quem);
+void finalizarNo(struct no *quem);
 
-#endif
+#endif // LISTALIGADA_LISTALIGADA_H

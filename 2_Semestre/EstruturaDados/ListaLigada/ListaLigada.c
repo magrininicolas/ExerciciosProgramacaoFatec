@@ -1,9 +1,11 @@
 #include "ListaLigada.h"
 
-no *inicio = NULL;
-no *novo = NULL;
-no *aux = NULL;
-no *anterior = NULL;
+struct no *inicio = NULL;
+struct no *aux = NULL;
+struct no *anterior = NULL;
+struct no *novo = NULL;
+struct no *procurando = NULL;
+struct no *encontrado = NULL;
 
 void inicializar()
 {
@@ -19,21 +21,22 @@ void finalizar()
     }
 }
 
-void finalizarNo(no *quem)
+void finalizarNo(struct no *quem)
 {
     if (quem->proximo != NULL)
     {
         finalizarNo(quem->proximo);
     }
+    printf("Excluindo %d\n", quem->dado);
     free(quem);
 }
 
-no *novoNo(int dado)
+struct no *novo_no(int dado)
 {
-    no *p = malloc(sizeof(no));
+    struct no *p = malloc(sizeof(struct no));
     if (!p)
     {
-        printf("Erro para alocar");
+        printf("Erro de alocacao de memoria\n");
         exit(-1);
     }
 
@@ -61,6 +64,40 @@ void imprimir()
     }
 }
 
+void adicionar(int valor)
+{
+    novo = novo_no(valor);
+    if (inicio == NULL)
+    {
+        inicio = novo;
+    }
+    else
+    {
+        if (novo->dado <= inicio->dado)
+        {
+            adicionarNoInicio();
+        }
+        else
+        {
+            aux = inicio;
+            anterior = inicio;
+
+            while (aux->dado <= novo->dado && aux->proximo != NULL)
+            {
+                anterior = aux;
+                aux = aux->proximo;
+            }
+            if (novo->dado > aux->dado)
+            {
+                adicionarNoFim();
+            }
+            else
+            {
+                adicionarNoMeio();
+            }
+        }
+    }
+}
 void adicionarNoInicio()
 {
     novo->proximo = inicio;
@@ -78,36 +115,80 @@ void adicionarNoMeio()
     anterior->proximo = novo;
 }
 
-void adicionar(int valor)
+void excluir(int valor)
 {
-    novo = novoNo(valor);
-    if (inicio == NULL)
+    encontrado = procuraDado(valor);
+    if (encontrado)
     {
-        adicionarNoInicio();
-    }
-    else
-    {
-        if (novo->dado <= inicio->dado)
+        if (inicio->proximo == NULL)
         {
-            adicionarNoInicio();
+            inicio = NULL;
+            free(encontrado);
         }
         else
         {
-            aux = inicio;
-            anterior = inicio;
-            while (aux->dado <= novo->dado && aux->proximo != NULL)
+            if (inicio == encontrado)
             {
-                anterior = aux;
-                aux = aux->proximo;
-            }
-            if (novo->dado > aux->dado)
-            {
-                adicionarNoFim();
+                excluirNoInicio();
             }
             else
             {
-                adicionarNoMeio();
+                aux = inicio;
+                anterior = NULL;
+
+                while (aux != encontrado)
+                {
+                    anterior = aux;
+                    aux = aux->proximo;
+                }
+                if (aux->proximo == NULL)
+                {
+                    excluirNoFim();
+                }
+                else
+                {
+                    excluirNoMeio();
+                }
             }
         }
+        encontrado = NULL;
     }
+    else
+    {
+        printf("Valor nao encontrado\n\n");
+    }
+}
+
+void excluirNoInicio()
+{
+    inicio = inicio->proximo;
+    free(encontrado);
+}
+
+void excluirNoMeio()
+{
+    anterior->proximo = aux->proximo;
+    free(encontrado);
+}
+
+void excluirNoFim()
+{
+    anterior->proximo = NULL;
+    free(encontrado);
+}
+
+struct no *procuraDado(int valor)
+{
+    aux = inicio;
+
+    while (aux != NULL)
+    {
+        if (aux->dado == valor)
+        {
+            return aux;
+        }
+        aux = aux->proximo;
+    }
+
+    return NULL;
 }
