@@ -1,0 +1,9 @@
+# ninja log v5
+0	44	1696379997510158082	CMakeFiles/ListaLigada.dir/main.c.o	b6f172e6b3d6d56e
+0	48	1696379997514158111	CMakeFiles/ListaLigada.dir/ListaLigada.c.o	6572560ba618721b
+48	74	1696379997538158291	ListaLigada	70bf67ca212e8bab
+0	27	1696380040586480455	CMakeFiles/ListaLigada.dir/ListaLigada.c.o	6572560ba618721b
+27	49	1696380040610480635	ListaLigada	70bf67ca212e8bab
+0	29	1696380154587333620	CMakeFiles/ListaLigada.dir/main.c.o	b6f172e6b3d6d56e
+0	31	1696380154591333650	CMakeFiles/ListaLigada.dir/ListaLigada.c.o	6572560ba618721b
+31	50	1696380154611333800	ListaLigada	70bf67ca212e8bab
