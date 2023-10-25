@@ -1,0 +1,7 @@
+# ninja log v5
+1	216	1698194052303039722	CMakeFiles/ArvoreBinaria.dir/main.c.o	d425e2efaa0b8887
+1	216	1698194052303039722	CMakeFiles/ArvoreBinaria.dir/ArvoreBinaria.c.o	40fb8342782426c5
+0	25	1698194139135631483	CMakeFiles/ArvoreBinaria.dir/main.c.o	d425e2efaa0b8887
+25	45	1698194139155631619	ArvoreBinaria	c8bbddd736bd0231
+0	28	1698194449981749909	CMakeFiles/ArvoreBinaria.dir/ArvoreBinaria.c.o	40fb8342782426c5
+28	49	1698194450005750071	ArvoreBinaria	c8bbddd736bd0231
