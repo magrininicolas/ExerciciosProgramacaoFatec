@@ -37,7 +37,7 @@ struct no *novo_no(int dado)
         printf("Erro de alocacao de memoria\n");
         exit(-1);
     }
-
+    p->anterior = NULL;
     p->dado = dado;
     p->proximo = NULL;
 
