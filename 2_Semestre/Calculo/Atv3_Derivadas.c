@@ -17,7 +17,7 @@ int main()
     float k, x;
     int opcao;
 
-    x = 11*M_PI / 2;
+    x = 2;
     k = 3;
 
     for (opcao = 1; opcao <= 4; opcao++)
