@@ -16,5 +16,6 @@ void adicionar(struct no *aonde, struct no *quem);
 struct no *novoNo(int dado);
 void inicializar();
 void finalizar(struct no *aonde);
+struct no *busca(struct no *arvore, int dado);
 
 #endif //ARVOREBINARIA_ARVOREBINARIA_H
