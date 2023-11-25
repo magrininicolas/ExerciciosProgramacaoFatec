@@ -6,15 +6,6 @@
 // NOME COMPLETO 4: Jesua Isaque Calefi da Silva
 ///////////////////
 
-///////////////////////////////////////////////////////////////////
-///       FUNCAO A SER IMPLEMENTADA PELO GRUPO                  ///
-///       FUNCAO RECEBE OPCAO (inteiro), k, a, b (float)         ///
-///       FUNCAO IRA RETORNAR A INTEGRAL DEFINIDA de f(x) EM RELACAO A X DE a ATE b das seguintes funcoes avaliada em x: ///
-///               f(x) = x^k - SE OPCAO 1                      ///
-///               f(x) = 1/x - SE OPCAO 2                      ///
-///               -1234567   - SE OUTRA OPCAO OU SE X INVALIDO NO DOMINIO   ///
-///////////////////////////////////////////////////////////////////
-
 #include <stdio.h>
 #include <math.h>
 
