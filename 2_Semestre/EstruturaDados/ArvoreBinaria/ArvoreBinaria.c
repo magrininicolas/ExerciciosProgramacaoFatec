@@ -3,22 +3,25 @@
 #include "ArvoreBinaria.h"
 
 // Variáveis
-struct no *inicio;
+struct no* inicio;
+struct no* anterior;
+struct no* direita;
+struct no* esquerda;
 
 // Protótipos
 void adicionar(struct no *aonde, struct no *quem)
 {
-    if (inicio == NULL)
+    if(inicio == NULL)
     {
         printf("Adicionando %d no inicio\n", quem->dado);
         inicio = quem;
     }
     else
     {
-        if (quem->dado > aonde->dado)
+        if(quem->dado > aonde->dado)
         {
             // direita
-            if (aonde->direita == NULL)
+            if(aonde->direita == NULL)
             {
                 printf("Adicionando %d a direita de %d\n", quem->dado, aonde->dado);
                 aonde->direita = quem;
@@ -32,7 +35,7 @@ void adicionar(struct no *aonde, struct no *quem)
         else
         {
             // esquerda
-            if (aonde->esquerda == NULL)
+            if(aonde->esquerda == NULL)
             {
                 printf("Adicionando %d a esquerda de %d\n", quem->dado, aonde->dado);
                 aonde->esquerda = quem;
@@ -51,7 +54,7 @@ struct no *novoNo(int dado)
     struct no *p = NULL;
 
     p = malloc(sizeof(struct no));
-    if (!p)
+    if(!p)
     {
         printf("Erro de alocacao de memoria!\n");
         exit(-1);
@@ -70,14 +73,18 @@ void inicializar()
 
 void finalizar(struct no *aonde)
 {
-    if (aonde->esquerda != NULL)
+    if(aonde == NULL)
     {
-        printf("Indo para a esquerda de %d\n", aonde->dado);
+        return;
+    }
+    if(aonde->esquerda != NULL)
+    {
+        printf("indo para a esquerda de %d\n", aonde->dado);
         finalizar(aonde->esquerda);
     }
-    if (aonde->direita != NULL)
+    if(aonde->direita != NULL)
     {
-        printf("Indo para a direita de %d\n", aonde->dado);
+        printf("indo para a direita de %d\n", aonde->dado);
         finalizar(aonde->direita);
     }
     printf("Excluindo %d\n", aonde->dado);
@@ -93,10 +100,36 @@ struct no *busca(struct no *arvore, int dado)
 
     if (arvore->dado > dado)
     {
+        anterior = arvore;
         busca(arvore->esquerda, dado);
     }
     else
     {
+        anterior = arvore;
         busca(arvore->direita, dado);
     }
+
+}
+
+void excluir(struct no* arvore)
+{
+    if(arvore->dado < anterior->dado)
+    {
+        anterior->esquerda = NULL;
+    }
+    else
+    {
+        anterior->direita = NULL;
+    }
+
+    if(arvore->esquerda != NULL)
+    {
+        adicionar(inicio, novoNo(arvore->esquerda->dado));
+    }
+    if(arvore->direita != NULL)
+    {
+        adicionar(inicio, novoNo(arvore->direita->dado));
+    }
+
+    free(arvore);
 }
